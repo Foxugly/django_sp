@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+{% for page in object.pages.all %}
+<p><a href={% url 'page:page_detail' pk=page.pk%}>{{page.datetime_begin}}</a></p>
+{% endfor %}
+{% endblock content %}

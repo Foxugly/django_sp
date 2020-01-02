@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+<!-- bootstrap4 hijack_tags -->
+{% load static i18n common_tags %}
+{% block content %}
+<div class="text-center"><h1>models</h1></div>
+
+<div class="card">
+{% for key, list in apps.items %}
+	<div class="card-header">
+		<h5>{{key}}</h5>
+	</div>
+	<div class="card-body">
+		<table class="table table-striped">
+			<tbody>
+	{% for model in list %}
+		<tr><td><a href= '{{model.get_list_url}}'}>{{model|verbose_name}}</a></td></tr>
+	{% endfor %}
+		  </tbody>
+		</table>
+	</div>
+{% endfor %}
+</div>
+{% endblock content %}

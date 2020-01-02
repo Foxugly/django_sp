@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static page_details %}
+{% block content %}
+<div class="row justify-content-around">
+    <div class="card mb-3">
+        <div class="card-body text-center">
+            <div class="card-header">{{object.name}}</div>
+            <div class="card-body">
+                <table class="table table-sm">
+                    <tbody>
+                        <tr class="">
+                            <td class="small">link</td>
+                            <!--<td class="text-left small"><a href="../document/{{ object.local_url|cast_url }}">{{object.name}}</a></td>-->
+                            {% if object.local_url == object.url %}
+                                <td class="text-left small"><a href="{{ object.local_url }}">{{object.name}}</a></td>
+                            {% else %}
+                                <td class="text-left small"><a href="{{ object.local_url|cast_local }}">{{object.name}}</a></td>
+                            {% endif %}
+                        </tr>
+                        <tr class="">
+                            <td class="small">url</td>
+                            <td class="text-left small"><a href="{{object.url}}">{{object.url}}</a></td>
+                        </tr>
+                        <tr class="">
+                            <td class="small">Author</td>
+                            <td class="text-left small">{{object.author}}</td>
+                        </tr>
+                        <tr class="">
+                            <td class="small">Datetime Creation</td>
+                            <td class="text-left small">{{object.datetime_creation}}</td>
+                        </tr>
+                        <tr class="">
+                            <td class="small">File Size</td>
+                            <td class="text-left small">{{object.file_size}}</td>
+                        </tr>
+                        <tr class="">
+                            <td class="small">File version</td>
+                            <td class="text-left small">{{object.file_version}}</td>
+                        </tr>
+                        <tr class="">
+                            <td class="small">Datetime modified</td>
+                            <td class="text-left small">{{object.datetime_modified}}</td>
+                        </tr>
+                        <tr class="">
+                            <td class="small">Modify by</td>
+                            <td class="text-left small">{{object.modify_by}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

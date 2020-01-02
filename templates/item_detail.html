@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+{% load page_details %}
+{% block content %}
+
+<div class="row justify-content-around">
+    <div class="card mb-3">
+        <div class="card-body text-center">
+            <div class="card-header">{{object.name}}</div>
+            <div class="card-body">
+                <table class="table table-sm">
+                    <tbody>
+                        {% for pair in object.pairs.all %}
+                            <tr class="">
+                                <td class="small">{{pair.key}}</td>
+                                <td class="text-left small">{{pair.value}}</td>
+                            </tr>
+                        {% endfor %}
+                        <tr class="">
+                            <td class="small">Document(s)</td>
+                            <td class="text-left small">
+                                {% for d in object.documents.all %}
+                                    {% if view %}
+                                        <p><a href='{% url "page:document_detail" pk=d.pk%}'>{{d.name}}</a></p>
+                                    {% else %}
+                                <p><a href='../document/{{d.pk}}.html'>{{d.name}}</a></p>
+                                    {% endif %}
+                                {% endfor %}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,178 @@
+{% extends "base.html" %}
+{% load bootstrap4 static page_details website_details common_tags %}
+{% block content %}
+<div class="row">
+    <div class="col-2 col-md-2 col-sm-2">
+        <div class="card">
+            <div class="card-body text-center">
+                <div class="card-header"> Links</div>
+                <div class="card-body">
+                    <ul class="text-left list-unstyled">
+                    {% for page in object.ref_website|get_pages_sorted %}
+                        {% url "page:page_detail" pk=page.pk as the_url %}
+                        {% if request.get_full_path == the_url %}
+                            <li class="small">{{page.datetime_begin |date:"d/m/Y" }}</li>
+                        {% else %}
+                            {% if view %}
+                                <li class="small"><a href={{ the_url}}>{{page.datetime_begin |date:"d/m/Y" }}</a></li>
+                            {% else %}
+                                <li class="small"><a href='../page/{{page.pk}}.html'>{{page.datetime_begin |date:"d/m/Y" }}</a></li>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-10 col-md-10 col-sm-10">
+        <div class="row">
+            <!--<div class="col-6 col-md-6 col-sm-6">
+                {% with col=object|get_collection:"Messages" %}
+                <div class="card mb-3">
+                    <div class="card-body text-center">
+                        <div class="card-header">Messages</div>
+                        <div class="card-body">
+                            {% for item in col.items.all %}
+                                <p><a href={% url "page:item_detail" pk=item.pk%}>{{item}}</a></p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                {% endwith %}
+            </div>-->
+            <div class="col-12 col-md-12 col-sm-12">
+                {% with col=object|get_collection:"Objectives" %}
+                <div class="card mb-3">
+                    <div class="card-body text-center">
+                        <div class="card-header">Objectives</div>
+                        <div class="card-body">
+                            {% for item in col.items.all %}
+                                {% if view %}
+                                    <p><a href='{% url "page:item_detail" pk=item.pk%}'>{{item|get_title}}</a></p>
+                                {% else %}
+                                    <p><a href='../item/{{item.pk}}.html'>{{item|get_title}}</a></p>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                {% endwith %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3 col-md-3 col-sm-3">
+                {% with col=object|get_collection:"Attendees" %}
+                <div class="card mb-3">
+                    <div class="card-body text-center">
+                        <div class="card-header">Attendees</div>
+                        <div class="card-body">
+                            <ul class="text-left list-unstyled">
+                            {% for item in col.items.all %}
+                                {% if view %}
+                                    <li class="small"><a href='{% url "page:item_detail" pk=item.pk%}'>{{item|get_title }}</a></li>
+                                {% else %}
+                                    <li class="small"><a href='../item/{{item.pk}}.html'>{{item|get_title }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {% endwith %}
+            </div>
+            <div class="col-9 col-md-9 col-sm-9">
+                {% with col=object|get_collection:"Agenda" %}
+                <div class="card mb-3">
+                    <div class="card-body text-center">
+                        <div class="card-header">Agenda</div>
+                        <div class="card-body">
+                            <table class="table table-sm">
+                                <thead>
+                                    <th>Order</th>
+                                    <th>Title</th>
+                                    <th>Owner</th>
+                                    <th>Time</th>
+                                </thead>
+                                <tbody>
+                                    {% for item in col.items.all %}
+                                        <tr class="text-left">
+                                            <td class="small">{{item|get_value:"Order" }}</td>
+                                            {% if view %}
+                                                <td class="small"><a href='{% url "page:item_detail" pk=item.pk %}'>{{item|get_title }}</a></td>
+                                            {% else %}
+                                            <td class="small"><a href='../item/{{item.pk}}.html'>{{item|get_title }}</a></td>
+                                            {% endif %}
+                                            <td class="small">{{item|get_value:"Author" }}</td>
+                                            <td class="small">{{item|get_value:"Created" }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                {% endwith %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-9 col-md-9 col-sm-9">
+                {% with col=object|get_collection:"Document Library" %}
+                <div class="card mb-3">
+                    <div class="card-body text-center">
+                        <div class="card-header">Document Library</div>
+                        <div class="card-body">
+                            <table class="table table-sm">
+                                <thead>
+                                    <th>Document</th>
+                                    <th>Author</th>
+                                    <th>Modified</th>
+                                    <th>Modify by</th>
+                                </thead>
+                                <tbody>
+                            {% for item in col.items.all %}
+                                <tr class="text-left">
+                                    <td class="small">
+                                        {% if view %}
+                                            <a href='{% url "page:document_detail" pk=item|get_doc_id %}'>{{item|get_doc }}</a>
+                                        {% else %}
+                                            <a href='../document/{{item|get_doc_id}}.html'>{{item|get_doc }}</a>
+                                        {% endif %}
+
+                                    </td>
+                                    <td class="small">{{item|get_doc|get_author}}</td>
+                                    <td class="small">{{item|get_doc|get_datetime_modified}}</td>
+                                    <td class="small">{{item|get_doc|get_modify_by}}</td>
+                                </tr>
+                            {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                {% endwith %}
+            </div>
+            <div class="col-3 col-md-3 col-sm-3">
+                {% with col=object|get_collection:"Site Users" %}
+                <div class="card mb-3">
+                    <div class="card-body text-center">
+                        <div class="card-header">Site Users</div>
+                        <div class="card-body">
+                            <ul class="text-left list-unstyled">
+                            {% for item in col.items.all %}
+                                {% if view %}
+                                    <li class="small"><a href='{% url "page:item_detail" pk=item.pk%}'>{{item|get_title }}</a></li>
+                                {% else %}
+                                    <li class="small"><a href='../item/{{item.pk}}.html'>{{item|get_title }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {% endwith %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,5 @@
+1.	Format date for document => OK ?
+2.	Create an agenda library, upload document and get metadata
+3.	Link collection and item to website => OK
+4.	Get permissions from https://collab-famhp.yourict.be/entities/CEO/Management/ComDir/Comdir%20POC%20Meeting/_layouts/15/user.aspx and add permissions to item
+5.	Link document_library_item to document (or check with the datamodel) => OK
