@@ -1,4 +1,0 @@
-id;name;url;instance_id_type;prefix;date_start;date_limit;id_limit
-1;Infra dev;https://collab-famhp.yourict.be/entities/Soutien/ICTDivision/meetings/réunion%20infra-dev%202017/default.aspx?InstanceID=20190108;date;https://collab-famhp.yourict.be/entities/Soutien/ICTDivision/meetings/r%C3%A9union%20infra-dev%202017/;1/01/2017;31/12/2017;100
-2;ComDir 2019;https://collab-famhp.yourict.be/entities/CEO/Management/ComDir/Comdir%20POC%20Meeting/default.aspx?InstanceID=1;int;https://collab-famhp.yourict.be/entities/CEO/Management/ComDir/Comdir%20POC%20Meeting/;;;15
-3;Comdir POC Meeting2018;https://collab-famhp.yourict.be/entities/CEO/Management/ComDir/Comdir%20POC%20Meeting2018/default.aspx?InstanceID=1;int;https://collab-famhp.yourict.be/entities/CEO/Management/ComDir/Comdir%20POC%20Meeting2018/;;;51

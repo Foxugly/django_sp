@@ -1,6 +1,6 @@
 Django>=2.0.2
 setuptools
-celery>=3.1.18
+#celery>=3.1.18
 redis>=2.10.3
 django-hijack
 django-hijack-admin
@@ -8,8 +8,8 @@ django-extensions
 django-debug-toolbar
 django-bootstrap4
 django-view-breadcrumbs
-django-celery
-django-celery-results
+#django-celery
+#django-celery-results
 selenium
 bs4
 jinja2
@@ -19,4 +19,4 @@ django-import-export
 requests
 ntlm-auth
 requests_ntlm
-mysqlclient
+mysqlclient==1.3.13

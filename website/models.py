@@ -12,15 +12,15 @@ instance_type = (
 
 
 class Website(GenericClass):
-    name = models.CharField(max_length=100, verbose_name=_("name"), null=True, blank=True,)
+    name = models.CharField(max_length=100, verbose_name=_("name"))
     running = models.BooleanField(default=False)
-    url = models.CharField(max_length=1000, verbose_name=_("url"), null=True, blank=True,)
+    url = models.CharField(max_length=1000, verbose_name=_("url"))
     instance_id_type = models.CharField(_("InstanceId type"), max_length=4, choices=instance_type, default=1)
-    prefix = models.CharField(max_length=500, verbose_name=_("prefix"), null=True, blank=True,)
+    prefix = models.CharField(max_length=500, verbose_name=_("prefix"))
     pages = models.ManyToManyField(Page, blank=True, verbose_name=_("Pages"))
     date_start = models.DateField(null=True, blank=True, verbose_name=_("start of date"))
     date_limit = models.DateField(null=True, blank=True, verbose_name=_("Limit of date"))
-    id_limit = models.IntegerField(default=100, verbose_name=_("id max"))
+    id_limit = models.IntegerField(default=100, null=True, blank=True, verbose_name=_("id max"))
 
     def as_json(self):
         l_pages = []
